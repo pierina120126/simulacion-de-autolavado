@@ -1,96 +1,94 @@
-# 🚗 AutoLavado Sim — Simulación de Autolavado
+# AutoLavado Sim — Simulación de Autolavado
 
-![AutoLavado Sim](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![React](https://img.shields.io/badge/React_18-61DAFB?logo=react&logoColor=black)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwindcss&logoColor=white)
+Aplicación web interactiva desarrollada para simular y analizar el flujo de atención vehicular en un autolavado con 4 estaciones de servicio en secuencia, cálculo de métricas en tiempo real y detección de cuellos de botella.
 
-> Aplicación web interactiva para simular el proceso de un autolavado con 4 estaciones en secuencia, métricas en tiempo real y visualización del flujo de vehículos.
+Demo en línea (Vercel): https://autolavado-app-ten.vercel.app  
+Repositorio (GitHub): https://github.com/pierina120126/simulacion-de-autolavado  
 
-## ✨ Características
+---
 
-### 🏭 Estaciones de Proceso (4 en secuencia)
-| # | Estación | Icono | Tiempo Base |
-|---|----------|-------|-------------|
-| 1 | Llegada | 📥 | 3 seg |
-| 2 | Aspirado | 🌀 | 8 seg |
-| 3 | Lavado | 🫧 | 15 seg |
-| 4 | Secado | 🌬️ | 10 seg |
+## Estaciones del Proceso
 
-### 🎨 Estados Visuales
-- 🟢 **LIBRE** — Estación disponible
-- 🔴 **OCUPADO** — Estación procesando un vehículo
-- 🟡 **BLOQUEADO** — Cola de espera saturada
+El autolavado opera mediante 4 estaciones en serie. Cada una cumple una función específica dentro del ciclo:
 
-### 📊 Dashboard de Métricas en Tiempo Real
-- 💰 **Total de Ingresos** durante la simulación
-- 🧾 **Facturas Totales** / Servicios completados
-- ⚠️ **Porcentaje de Cuello de Botella** (% con estación identificada)
-- 📊 **Utilización por Estación** (%)
-- ⏱️ **Tiempo Promedio de Servicio** por vehículo
-- ⚡ **Controles de Velocidad**: 0.25x, 0.5x, 1x, 2x, 5x, 10x
+| # | Estación | Función Principal | Tiempo Base |
+|---|----------|-------------------|:-----------:|
+| 1 | **Llegada** | Recepción e ingreso de vehículos al sistema | 3 seg |
+| 2 | **Aspirado** | Limpieza y aspirado del interior del auto | 8 seg |
+| 3 | **Lavado** | Enjabonado y lavado exterior a presión | 15 seg |
+| 4 | **Secado** | Secado con turbinas de aire y entrega | 10 seg |
 
-### 🎮 Controles de Simulación
-- Ajuste de **tasa de llegada** de vehículos (5s a 60s entre autos)
-- Selección de **número de estaciones activas** (1 a 4)
-- Control de **velocidad de simulación** con botones y atajos
-- Botón **Iniciar / Pausar / Reset**
+---
 
-## 🚀 Deploy
+## Estados de las Estaciones
 
-### Opción 1: Abrir directamente
-```bash
-# Solo abre el archivo en tu navegador
-start index.html
-```
+Cada estación cuenta con indicadores visuales que reflejan su condición operativa en cada segundo:
 
-### Opción 2: GitHub Pages
-```bash
-git init
-git add .
-git commit -m "feat: AutoLavado Sim v1.0"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/autolavado-sim.git
-git push -u origin main
-# Activa GitHub Pages en Settings → Pages → Branch: main
-```
+* **LIBRE:** La estación está desocupada y disponible para recibir el siguiente vehículo.
+* **OCUPADO:** La estación se encuentra procesando activamente un auto.
+* **BLOQUEADO:** La estación terminó su trabajo pero no puede transferir el auto porque la siguiente estación sigue ocupada (cuello de botella).
 
-### Opción 3: Vercel (1 click)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+---
 
-1. Sube el repositorio a GitHub
-2. Importa en [vercel.com](https://vercel.com)
-3. Selecciona **Framework: Other** y despliega
+## Panel de Métricas
 
-## 🛠️ Tecnologías
-- **React 18** (via CDN — sin build step)
-- **Tailwind CSS** (via CDN)
-- **Babel Standalone** (JSX en navegador)
-- **HTML5 + CSS3** puro con animaciones
+La simulación calcula y actualiza en tiempo real los siguientes indicadores de rendimiento:
 
-## 📁 Estructura
-```
-autolavado-sim/
-├── index.html        # App completa (todo-en-uno)
-├── vercel.json       # Config de Vercel
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-└── README.md
-```
+* **Ingresos Totales:** Ganancias acumuladas por los vehículos atendidos.
+* **Vehículos Atendidos:** Cantidad total de autos que completaron el circuito.
+* **Cuello de Botella:** Porcentaje y detección automática de la estación más congestionada.
+* **Utilización por Estación:** Porcentaje de tiempo que cada estación se mantuvo ocupada.
+* **Tiempo Promedio de Servicio:** Duración media que tarda un vehículo en completar todo el proceso.
 
-## 📸 Vista Previa
+---
 
-```
+## Opciones y Controles de la Simulación
+
+* **Tasa de llegada:** Configuración del intervalo de llegada de vehículos (de 5 a 60 segundos).
+* **Estaciones activas:** Permite seleccionar cuántas estaciones participan en la simulación (de 1 a 4).
+* **Control de velocidad:** Opciones para acelerar o ralentizar el tiempo (0.25x, 0.5x, 1x, 2x, 5x, 10x).
+* **Botones de control:** Opciones para Iniciar, Pausar y Reiniciar (Reset) el flujo completo.
+
+---
+
+## Tecnologías Utilizadas
+
+* **React 19:** Componentes y gestión del estado reactivo de la simulación.
+* **TypeScript:** Estructura y tipos de datos del modelo operativo.
+* **Vite:** Herramienta de compilación y servidor de desarrollo.
+* **Tailwind CSS:** Diseño de la interfaz, panel oscuro y adaptación responsiva.
+* **Vercel:** Despliegue y alojamiento en la nube.
+
+---
+
+## Estructura del Proyecto
+
+```text
+├── public/                 # Iconos y recursos estáticos
+├── src/                    # Código fuente de la aplicación
+│   ├── components/         # Estaciones, controles y dashboard
+│   ├── constants/          # Tiempos base y configuración inicial
+│   ├── types/              # Tipos e interfaces de TypeScript
+│   ├── utils/              # Funciones auxiliares y cálculos de métricas
+│   ├── App.tsx             # Componente principal de la simulación
+│   └── main.tsx            # Punto de entrada de React
+├── index.html              # Archivo principal de la aplicación
+├── package.json            # Dependencias y scripts del proyecto
+├── tsconfig.json           # Configuración del compilador TypeScript
+└── vite.config.ts          # Configuración del empaquetador Vite
+
+
+Vista Previa de la Interfaz
 ┌─────────────────────────────────────────────────────────────┐
-│  🚗 AutoLavado Sim          [▶ Iniciar] [↺ Reset] [⚙️]      │
+│  AutoLavado Sim             [ Iniciar ]  [ Reset ]          │
 ├─────────────────────────────────────────────────────────────┤
-│  💰 $250.00   🧾 10 servicios   ⚠️ 82% Lavado   ⏱️ 36s      │
+│  Ingresos: $250.00   Atendidos: 10   Cuello: 82% Lavado     │
 ├─────────────────────────────────────────────────────────────┤
-│  📥 Llegada  →  🌀 Aspirado  →  🫧 Lavado  →  🌬️ Secado    │
-│  [LIBRE 🟢]    [OCUPADO 🔴]   [OCUPADO 🔴]  [LIBRE 🟢]     │
+│  Llegada   -->   Aspirado   -->   Lavado   -->   Secado     │
+│  [ LIBRE ]       [ OCUPADO ]     [ OCUPADO ]     [ LIBRE ]  │
 └─────────────────────────────────────────────────────────────┘
-```
 
-## 📄 Licencia
-MIT © 2025
+## Autora
+
+**Pierina** — Proyecto de Simulación de Procesos  
+Licencia MIT © 2026
